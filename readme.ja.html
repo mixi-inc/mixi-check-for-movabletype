@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>mixi Check Plugin for Movable Typeマニュアル</title>
+</head>
+<body>
+<pre>
+mixi Check Plugin for Movable Type
+
+導入手順
+
+1. Movable Typeのpluginsディレクトリに配置します
+2. Movable Typeの左メニューに「mixiチェックの設定」というメニューが追加されるので、それをクリックします
+3. 必要な情報を入力します
+4. ウェブページ／ブログ記事のテンプレートを修正します
+
+4-1. <html>タグを修正します
+元が
+--
+&lt;html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard"&gt;
+--
+となっているはずなので、これを
+--
+&lt;html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:mixi="http://mixi-platform.com/ns#"&gt;
+--
+と修正します
+
+4-2. </head>の直前に<mt:mixiCheckHeader>を挿入します
+
+4-3. mixiチェックボタンを表示したい場所に<mt:mixiCheckButton>を挿入します
+携帯サイトの場合は<mt:mixiCheckButtonMB>を使用してください
+
+5. 再構築します
+</pre>
+</body>
+</html>
+

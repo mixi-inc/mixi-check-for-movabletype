@@ -1,0 +1,103 @@
+<mt:include name="include/header.tmpl">
+
+<script type="text/javascript">
+ jQuery(function(){
+  jQuery('#cfg_form').validate({
+   rules: {
+     mixi_check_key: {
+       required: true
+     }
+   },
+   errorClass: "msg-error",
+   errorPlacement: function(error, element) {
+     element.parents('div.field').addClass('error-field');
+     error.removeAttr('generated').insertAfter(element);
+   }
+  });
+ });
+</script>
+
+<form name="cfg_form" id="cfg_form" method="post" action="<mt:var name="script_url">">
+<input type="hidden" name ="__mode" value="save_settings" />
+<input type="hidden" name="_type" value="blog" />
+<input type="hidden" name="cfg_screen" value="cfg_mixi_check" />
+<input type="hidden" name="blog_id" value="<mt:var name="blog_id">" />
+<input type="hidden" name="return_args" value="<mt:var name="return_args" escape="html">" />
+<input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+
+<fieldset>
+ <h2><MT_TRANS phrase="Settings"></h2>
+ <div class="field field-left-label ">
+  <div class="field-header">
+   <label for="mixi_check_key"><MT_TRANS phrase="mixi Check Key"></label>
+  </div>
+  <div class="field-content field-content-text">
+   <input type="text" name="mixi_check_key" value="<TMPL_VAR NAME=mixi_check_key>" id="mixi_check_key" /><br />
+   <label for="mixi_check_key"><MT_TRANS phrase="Input your mixi Check Key"></label>
+  </div>
+ </div>
+
+ <div class="field field-left-label ">
+  <div class="field-header">
+   <label for="is_adult"><MT_TRANS phrase="Rating"></label>
+  </div>
+  <div class="field-content field-content-text">
+   <input type="checkbox" name="is_adult" value="on" <TMPL_IF NAME=is_adult>checked</TMPL_IF>/><label for="is_adult"><MT_TRANS phrase="Check this if your site belongs adult category"></label>
+  </div>
+ </div>
+
+ <div class="field field-left-label ">
+  <div class="field-header">
+   <label for="robots"><MT_TRANS phrase="Robots"></label>
+  </div>
+  <div class="field-content field-content-text">
+   <select name="robots" multiple>
+    <option <TMPL_IF NAME=robots_notitle>selected</TMPL_IF> value="notitle">notitle (<MT_TRANS phrase="don't get title">)</option>
+    <option <TMPL_IF NAME=robots_nodescription>selected</TMPL_IF> value="nodescription">nodescription (<MT_TRANS phrase="don't get description">)</option>
+    <option <TMPL_IF NAME=robots_noimage>selected</TMPL_IF> value="noimage">noimage (<MT_TRANS phrase="don't get image">)</option>
+    <option value="">
+   </select><br />
+   <label for="robots"><MT_TRANS phrase="Select the information you prefer undisclosed"></label>
+  </div>
+ </div>
+
+ <div class="field field-left-label ">
+  <div class="field-header">
+   <label for="button_type"><MT_TRANS phrase="Button Type"></label>
+  </div>
+  <div class="field-content field-content-text">
+   <input type="radio" name="button_type" value="button-1" <TMPL_IF NAME=button-1>checked</TMPL_IF>><img src="plugins/mixiCheck/bt_check_1.png" /><br />
+   <input type="radio" name="button_type" value="button-2" <TMPL_IF NAME=button-2>checked</TMPL_IF>><img src="plugins/mixiCheck/bt_check_2.png" /><br />
+   <input type="radio" name="button_type" value="button-3" <TMPL_IF NAME=button-3>checked</TMPL_IF>><img src="plugins/mixiCheck/bt_check_3.png" /><br />
+   <input type="radio" name="button_type" value="button-4" <TMPL_IF NAME=button-4>checked</TMPL_IF>><img src="plugins/mixiCheck/bt_check_4.png" /><br />
+   <label for="button_type"><MT_TRANS phrase="Select display button"></label>
+  </div>
+ </div>
+</fieldset>
+
+<fieldset>
+ <div class="field field-left-label ">
+  <div class="field-header">
+   <MT_TRANS phrase="Reference">
+  </div>
+  <div class="field-content field-content-text">
+   <a href="./plugins/mixiCheck/readme.ja.html" target="_blank"><MT_TRANS phrase='How to install "mixi Check" to your site.(ja)'></a>
+  </div>
+ </div>
+</fieldset>
+
+<mt:setvarblock name="action_buttons">
+    <button
+        type="submit"
+        accesskey="s"
+        title="<__trans phrase="Save changes to these settings (s)">"
+        class="save action primary-button"
+        ><__trans phrase="Save Changes"></button>
+</mt:setvarblock>
+<mt:include name="include/actions_bar.tmpl" bar_position="bottom" hide_pager="1" settings_bar="1">
+
+</div>
+
+</form>
+
+<mt:include name="include/footer.tmpl">
